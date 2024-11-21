@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func Sum(numbers []int) int { // numbers is a array of 5 elements. Array sizes are fixed.
 	sum := 0
 	for _, number := range numbers { // ranges returns two values index, value. Using the blank operator to ignore indexes.
@@ -15,10 +13,23 @@ func Sum(numbers []int) int { // numbers is a array of 5 elements. Array sizes a
 func SumAll(numbersToSum ...[]int) []int {
 	lengthOfNumbers := len(numbersToSum)
 	sums := make([]int, lengthOfNumbers)
-	fmt.Println("This is the sums", sums)
 
 	for i, numbers := range numbersToSum {
 		sums[i] = Sum(numbers)
+	}
+
+	return sums
+}
+
+func SumAllTails(numbersToSum ...[]int) []int {
+	var sums []int
+	for _, numbers := range numbersToSum {
+		if len(numbers) == 0 {
+			sums = append(sums, 0)
+		} else {
+			tail := numbers[1:]
+			sums = append(sums, Sum(tail))
+		}
 	}
 
 	return sums
