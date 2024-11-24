@@ -2,6 +2,9 @@ package shape
 
 import "math"
 
+type Shape interface {
+	Area() float64
+}
 type Rectangle struct {
 	Width  float64
 	Height float64
@@ -9,6 +12,15 @@ type Rectangle struct {
 
 func (r Rectangle) Area() float64 {
 	return r.Height * r.Width
+}
+
+type Triangle struct {
+	Base   float64
+	Height float64
+}
+
+func (r Triangle) Area() float64 {
+	return (r.Height * r.Base) * 0.5
 }
 
 type Circle struct {
